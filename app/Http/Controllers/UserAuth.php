@@ -30,10 +30,12 @@ class UserAuth extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect("login");
+            return redirect('mainpage');
         }
-  
-        return redirect("/")->withSuccess('Login details are not valid');
+        else{
+            echo "Login details are not valid";
+            return redirect("/")->withSuccess('Login details are not valid');
+        }
     }
 
     public function registration()
@@ -52,7 +54,7 @@ class UserAuth extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect("/dbconn")->withSuccess('You have signed-in');
+        return redirect('mainpage');
     }
 
     public function create(array $data)
@@ -67,7 +69,7 @@ class UserAuth extends Controller
     public function dashboard()
     {
         if(Auth::check()){
-            return view('dashboard');
+            return view('mainpage');
         }
   
         return redirect("login")->withSuccess('You are not allowed to access');
@@ -77,6 +79,6 @@ class UserAuth extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('login');
+        return Redirect('welcome');
     }
 }
