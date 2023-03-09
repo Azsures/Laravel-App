@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Session\Session;
+use DB;
 
 class UserAuth extends Controller
 {
@@ -30,7 +31,8 @@ class UserAuth extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect('mainpage');
+            $id = DB::select("SELECT id FROM users WHERE email = '$request->email'");
+            return redirect('mainpage/'.$id[0]->id);
         }
         else{
             echo "Login details are not valid";
@@ -54,7 +56,7 @@ class UserAuth extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect('mainpage');
+        return redirect('mainpage/'.$request->email);
     }
 
     public function create(array $data)

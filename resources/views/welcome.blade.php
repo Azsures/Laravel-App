@@ -48,7 +48,7 @@
                                 <div class="flex items-center justify-between">
                                 
                                     <div class="flex items-center justify-end mt-4">
-                                    <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+                                    <button type="submit" class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
                                     </div>
                                     @if (Route::has('password.request'))
                                             <a class="inline-block align-baseline font-bold text-sm text-black-500 hover:text-black-800" href="{{ route('password.request') }}">
@@ -57,7 +57,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <a class="inline-block align-baseline font-bold text-sm text-black-500 hover:text-black-800" href="/login">
+                                    <a class="inline-block align-baseline font-bold text-sm text-white hover:text-black-800" href="/login">
                                         Não tem conta ainda ? Cadastre-se
                                     </a>
                             </div>

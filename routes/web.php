@@ -27,6 +27,6 @@ Route::get('/login', function(){
     return view('login');
 });
 
-Route::get('/mainpage', [PostsController::class, 'index']);
+Route::get('/mainpage/{id}', [PostsController::class, 'index'])->name('PostController.index');
 Route::post('/', [UserAuth::class, 'customLogin']);
 Route::post('/login', [UserAuth::class, 'customRegistration']);

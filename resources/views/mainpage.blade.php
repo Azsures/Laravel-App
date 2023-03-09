@@ -15,6 +15,9 @@
 </head>
 <body class="bg-gradient-to-r from-red-500 to-blue-700 pt-20">
     <div class="max-w-5x1 mx-auto flex flex-col justify-center items-center">
-        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"> Seus pedidos </h1>
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl dark:text-black"> Olá, {{ $names[0]->name }} !</h1>
+        <h2 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"> Seus pedidos </h1>
+
+        
 </body>
 </html>
