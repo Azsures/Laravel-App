@@ -56,9 +56,10 @@
                                             </a>
                                     @endif
                                 </div>
-                                <div>
+                                <div class="text-sm text-white">
+                                    Não tem conta ainda ?
                                     <a class="inline-block align-baseline font-bold text-sm text-white hover:text-black-800" href="/login">
-                                        Não tem conta ainda ? Cadastre-se
+                                        Cadastre-se
                                     </a>
                             </div>
                         </div>

@@ -32,10 +32,15 @@ class UserAuth extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $id = DB::select("SELECT id FROM users WHERE email = '$request->email'");
-            return redirect('mainpage/'.$id[0]->id);
+            DB::table('users')
+                ->where('id', $id[0]->id)
+                ->update([
+                    'remember_token' => $request->_token,
+                ]);
+            
+            return redirect('mainpage/'.$id[0]->id.'/'.$request->_token);
         }
         else{
-            echo "Login details are not valid";
             return redirect("/")->withSuccess('Login details are not valid');
         }
     }
@@ -78,9 +83,9 @@ class UserAuth extends Controller
     }
     
     public function signOut() {
-        Session::flush();
+        //Session::flush();
         Auth::logout();
   
-        return Redirect('welcome');
+        return Redirect('/');
     }
 }

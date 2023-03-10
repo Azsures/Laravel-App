@@ -27,6 +27,7 @@ Route::get('/login', function(){
     return view('login');
 });
 
-Route::get('/mainpage/{id}', [PostsController::class, 'index'])->name('PostController.index');
+Route::get('/mainpage/{id}/{token}', [PostsController::class, 'index'])->name('PostController.index');
+Route::get('/signout', [UserAuth::class, 'signOut']);
 Route::post('/', [UserAuth::class, 'customLogin']);
 Route::post('/login', [UserAuth::class, 'customRegistration']);
