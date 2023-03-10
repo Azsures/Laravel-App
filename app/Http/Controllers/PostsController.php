@@ -16,11 +16,30 @@ class PostsController extends Controller
             return view('welcome');
         else{
             $names = DB::select("SELECT name FROM users WHERE id = '$request->id'");
-            
-            return view('mainpage',['names'=> $names]);
+            $post = DB::table('users')
+                ->leftJoin('posts', 'users.id', '=', 'posts.user_id')->where('users.id','=',$request->id)
+                ->get();
+            return view('mainpage',['names'=> $names, 'posts' => $post]);
         }
     }
-    public function create(){
-        return false;
+    public function store(Request $request){
+
+        $request->validate([
+            'title' => 'max: 30',
+            'content' => 'required|max:255',
+        ]);
+        
+        $data = $request->all();
+        $check = $this->create($data);
+
+        return;
+    }
+
+    public function show(Request $request)
+    {   
+        $post = Post::table('users')
+            ->leftJoin('posts', 'users.id', '=', 'posts.user_id')->where('users.id','=',$request->id)
+            ->get();
+        return $post;
     }
 }

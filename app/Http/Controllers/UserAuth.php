@@ -60,8 +60,15 @@ class UserAuth extends Controller
            
         $data = $request->all();
         $check = $this->create($data);
-         
-        return redirect('mainpage/'.$request->email);
+        
+        $id = DB::select("SELECT id FROM users WHERE email = '$request->email'");
+        DB::table('users')
+            ->where('id', $id[0]->id)
+            ->update([
+                'remember_token' => $request->_token,
+            ]);
+
+        return redirect('mainpage/'.$id[0]->id.'/'.$request->_token);
     }
 
     public function create(array $data)
