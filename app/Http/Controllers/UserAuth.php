@@ -37,7 +37,7 @@ class UserAuth extends Controller
                 ->update([
                     'remember_token' => $request->_token,
                 ]);
-            
+            $request->session()->flash('success', 'Sucesso ao fazer login');
             return redirect('mainpage/'.$id[0]->id.'/'.$request->_token);
         }
         else{
@@ -67,7 +67,7 @@ class UserAuth extends Controller
             ->update([
                 'remember_token' => $request->_token,
             ]);
-
+        $request->session()->flash('success', 'Sucesso ao cadastrar');
         return redirect('mainpage/'.$id[0]->id.'/'.$request->_token);
     }
 

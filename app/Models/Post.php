@@ -12,6 +12,10 @@ class Post extends Model
     public $fillable = [
         'title',
         'content',
-        'date',
+        'user_id',
+    ];
+
+    protected $attributes = [
+        'data' => '2023-11-03',
     ];
 }

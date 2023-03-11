@@ -14,6 +14,22 @@
     <!-- Styles -->
 </head>
 <body class="bg-gradient-to-r from-red-500 to-blue-700 pt-20">
+    @if($message = Session::get("success"))
+        <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+            <div class="flex">
+                <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                    <div>
+                        <button onClick="window.location.reload();" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>
+                            {!! session()->get('success') !!}
+                        </strong>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    @endif
     <form class="bg-gradient-to-r from-red-500 to-blue-700 pt-20" method="post">
         @csrf
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

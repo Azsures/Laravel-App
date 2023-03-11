@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 use DB;
 
 class PostsController extends Controller
@@ -22,24 +23,28 @@ class PostsController extends Controller
             return view('mainpage',['names'=> $names, 'posts' => $post]);
         }
     }
+
+    public function create(array $data, string $id)
+    {
+      return Post::create([
+        'title' => $data['title'],
+        'content' => $data['content'],
+        'user_id'=> $id,
+      ]);
+    }  
+
     public function store(Request $request){
 
         $request->validate([
-            'title' => 'max: 30',
+            'title' => 'required|max: 30',
             'content' => 'required|max:255',
         ]);
         
         $data = $request->all();
-        $check = $this->create($data);
+        $check = $this->create($data, $request->id);
 
-        return;
+        return $this->index($request);
     }
-
-    public function show(Request $request)
-    {   
-        $post = Post::table('users')
-            ->leftJoin('posts', 'users.id', '=', 'posts.user_id')->where('users.id','=',$request->id)
-            ->get();
-        return $post;
-    }
+    
+    
 }

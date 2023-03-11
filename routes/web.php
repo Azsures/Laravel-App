@@ -31,3 +31,4 @@ Route::get('/mainpage/{id}/{token}', [PostsController::class, 'index'])->name('P
 Route::get('/signout', [UserAuth::class, 'signOut']);
 Route::post('/', [UserAuth::class, 'customLogin']);
 Route::post('/login', [UserAuth::class, 'customRegistration']);
+Route::post('//mainpage/{id}/{token}', [PostsController::class, 'store']);
