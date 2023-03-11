@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
        
-
+        \App\Models\User::factory(10)->create();
         \App\Models\Post::factory()->create([
             'user_id' => 13,
             'title' => 'primeiro post',
